@@ -27,7 +27,7 @@ export default function Home() {
     desc: string;
   }> = [
     {
-      title: "Traxidy — Capstone",
+      title: "Traxidy — ASU Capstone",
       period: "Jan 2025 – Current",
       desc: "Integrated Google Calendar & Meet so task deadlines auto‑appear; OAuth linking and invites.",
     },
@@ -48,19 +48,19 @@ export default function Home() {
       title: "Unihabitat",
       desc: "Student-first housing marketplace with secure listings, messaging, and moderation.",
       badges: ["Next.js", "Supabase"],
-      href: "https://unihabitat.app",
+      href: "https://www.unihabitat.org/",
     },
     {
       title: "RallyUp (iOS)",
       desc: "Discover & host local sports sessions; live maps, host tools, and auto-created chats.",
       badges: ["SwiftUI"],
-      href: "https://github.com/rsenthi4",
+      href: "https://github.com/Rishi180303/RallyUp",
     },
     {
       title: "Unblock AI",
       desc: "A writing flow booster using AI prompts, realtime notes, and image support.",
       badges: ["Next.js", "Clerk"],
-      href: "https://unblock-ai.example.com",
+      href: "https://unblock-ai.vercel.app/",
     },
   ];
 
@@ -82,10 +82,10 @@ export default function Home() {
 
         {/* Taglines */}
         <motion.p variants={item} className="text-secondary text-[15px] sm:text-base leading-relaxed">
-          I build full-stack apps with clean UI and reliable backend plumbing.
+          I’m a senior CS student at ASU who likes to build things.
         </motion.p>
         <motion.p variants={item} className="text-secondary text-[15px] sm:text-base leading-relaxed mb-8">
-          Currently shipping calendar + auth integrations for product teams.
+          I enjoy shipping simple, clean products.
         </motion.p>
 
         {/* Experience */}
@@ -157,7 +157,7 @@ export default function Home() {
             <Mail size={18} /> Say hi
           </Link>
           <Link
-            href="https://github.com/rsenthi4"
+            href="https://github.com/Rishi180303"
             target="_blank"
             className="inline-flex items-center gap-2 text-primary hover:opacity-80"
             rel="noreferrer"
@@ -165,7 +165,7 @@ export default function Home() {
             <Github size={18} /> GitHub
           </Link>
           <Link
-            href="https://www.linkedin.com/in/rishikumar-s/"
+            href="https://www.linkedin.com/in/rishikumar18"
             target="_blank"
             className="inline-flex items-center gap-2 text-primary hover:opacity-80"
             rel="noreferrer"
