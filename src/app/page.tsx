@@ -47,19 +47,19 @@ export default function Home() {
     {
       title: "Unihabitat",
       desc: "Student-first housing marketplace with secure listings, messaging, and moderation.",
-      badges: ["Next.js", "Supabase"],
+      badges: ["Next.js", "Supabase", "TypeScript", "Tailwind", "Google Places"],
       href: "https://www.unihabitat.org/",
     },
     {
       title: "RallyUp (iOS)",
       desc: "Discover & host local sports sessions; live maps, host tools, and auto-created chats.",
-      badges: ["SwiftUI"],
+      badges: ["SwiftUI", "Firebase", "MapKit", "Foursquare"],
       href: "https://github.com/Rishi180303/RallyUp",
     },
     {
       title: "Unblock AI",
       desc: "A writing flow booster using AI prompts, realtime notes, and image support.",
-      badges: ["Next.js", "Clerk"],
+      badges: ["Next.js", "Clerk", "OpenAI", "Firebase", "React Query"],
       href: "https://unblock-ai.vercel.app/",
     },
   ];
@@ -115,11 +115,7 @@ export default function Home() {
         </motion.h2>
         <motion.ul variants={container} className="space-y-6 mb-10">
           {projects.map((p) => (
-            <motion.li
-              key={p.title}
-              variants={item}
-              className="group"
-            >
+            <motion.li key={p.title} variants={item}>
               <div className="flex items-center justify-start gap-2 mb-1">
                 <h3 className="text-[18px] sm:text-lg font-medium text-primary">
                   {p.title}
@@ -135,14 +131,34 @@ export default function Home() {
                     <ExternalLink size={16} />
                   </Link>
                 )}
-                {p.badges?.map((b) => (
-                  <span
-                    key={b}
-                    className="ml-2 text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary"
-                  >
-                    {b}
-                  </span>
-                ))}
+                {/* Badges: show first 2; reveal the rest when hovering the +N chip area only */}
+                <span className="inline-flex items-center gap-0">
+                  {p.badges?.slice(0, 2).map((b) => (
+                    <span
+                      key={b}
+                      className="ml-2 text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary"
+                    >
+                      {b}
+                    </span>
+                  ))}
+                  {p.badges && p.badges.length > 2 && (
+                    <span className="relative inline-flex items-center ml-2 group/badges">
+                      <span
+                        className="text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/badges:opacity-0 group-hover/badges:scale-90 group-hover/badges:max-w-0 group-hover/badges:px-0 group-hover/badges:mr-0 overflow-hidden"
+                      >
+                        +{p.badges.length - 2}
+                      </span>
+                      {p.badges.slice(2).map((b) => (
+                        <span
+                          key={b}
+                          className="ml-2 text-[11px] leading-5 rounded-full bg-[color:var(--color-accent)] text-secondary opacity-0 scale-95 -translate-x-1 max-w-0 px-0 mr-0 overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/badges:opacity-100 group-hover/badges:scale-100 group-hover/badges:translate-x-0 group-hover/badges:max-w-[160px] group-hover/badges:px-2"
+                        >
+                          {b}
+                        </span>
+                      ))}
+                    </span>
+                  )}
+                </span>
               </div>
               <p className="text-secondary text-[15px] leading-relaxed">
                 {p.desc}
@@ -176,7 +192,7 @@ export default function Home() {
             <Linkedin size={18} /> LinkedIn
           </Link>
           <Link
-            href="/resume.pdf"
+            href="/Rishikumar_Resume.pdf"
             target="_blank"
             className="inline-flex items-center gap-2 text-primary hover:opacity-80"
             rel="noreferrer"
