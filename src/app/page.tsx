@@ -21,6 +21,23 @@ export default function Home() {
     show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: easeOutBezier } },
   };
 
+  const experience: Array<{
+    title: string;
+    period: string;
+    desc: string;
+  }> = [
+    {
+      title: "Traxidy — Capstone",
+      period: "Jan 2025 – Current",
+      desc: "Integrated Google Calendar & Meet so task deadlines auto‑appear; OAuth linking and invites.",
+    },
+    {
+      title: "Technology Support Assistant — ASU",
+      period: "Jan 2023 – Oct 2023",
+      desc: "Built a Python package that boosted streaming speed 3× and resolved complex dual‑OS classroom issues.",
+    },
+  ];
+
   const projects: Array<{
     title: string;
     desc: string;
@@ -53,15 +70,15 @@ export default function Home() {
   ];
 
   return (
-    <main className="font-sans min-h-screen px-6 py-10 sm:px-8 md:px-12 lg:px-20 xl:px-28 2xl:px-44 bg-background text-primary">
+    <main className="font-sans min-h-screen flex items-center justify-center px-6 py-10 sm:px-8 md:px-12 lg:px-20 xl:px-28 2xl:px-44 bg-background text-primary">
       <motion.section
         initial="hidden"
         animate="show"
         variants={container}
-        className="max-w-3xl"
+        className="max-w-3xl w-full"
       >
         {/* Header with circle avatar and greeting */}
-        <motion.header variants={item} className="mb-6 flex items-center gap-4">
+        <motion.header variants={item} className="mb-6 flex items-center justify-start gap-4">
           <span className="inline-block w-6 h-6 rounded-full bg-secondary/40" aria-hidden />
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-primary">
             Hi, I’m Rishikumar Senthilvel
@@ -76,7 +93,28 @@ export default function Home() {
           Currently shipping calendar + auth integrations for product teams.
         </motion.p>
 
+        {/* Experience */}
+        <motion.h2 variants={item} className="text-[17px] font-semibold text-primary mb-3">
+          Experience
+        </motion.h2>
+        <motion.ul variants={container} className="space-y-5 mb-10">
+          {experience.map((e) => (
+            <motion.li key={e.title} variants={item}>
+              <div className="flex items-center gap-2 mb-1">
+                <h3 className="text-[18px] sm:text-lg font-medium text-primary">{e.title}</h3>
+                <span className="text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary">
+                  {e.period}
+                </span>
+              </div>
+              <p className="text-secondary text-[15px] leading-relaxed">{e.desc}</p>
+            </motion.li>
+          ))}
+        </motion.ul>
+
         {/* Projects */}
+        <motion.h2 variants={item} className="text-[17px] font-semibold text-primary mb-3">
+          Projects
+        </motion.h2>
         <motion.ul variants={container} className="space-y-6 mb-10">
           {projects.map((p) => (
             <motion.li
@@ -84,7 +122,7 @@ export default function Home() {
               variants={item}
               className="group"
             >
-              <div className="flex items-center gap-2 mb-1">
+              <div className="flex items-center justify-start gap-2 mb-1">
                 <h3 className="text-[18px] sm:text-lg font-medium text-primary">
                   {p.title}
                 </h3>
@@ -116,7 +154,7 @@ export default function Home() {
         </motion.ul>
 
         {/* Links */}
-        <motion.div variants={item} className="flex flex-wrap items-center gap-5 mb-10 text-[15px]">
+        <motion.div variants={item} className="flex flex-wrap items-center justify-start gap-5 mb-10 text-[15px]">
           <Link
             href="mailto:rsenthi4@asu.edu"
             className="inline-flex items-center gap-2 text-primary hover:opacity-80"
