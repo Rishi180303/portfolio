@@ -45,11 +45,6 @@ export default function Home() {
     href?: string;
   }> = [
     {
-      title: "Traxidy (Capstone)",
-      desc: "Integrated Google Calendar & Meet so task deadlines auto-appear with invites.",
-      badges: ["2025"],
-    },
-    {
       title: "Unihabitat",
       desc: "Student-first housing marketplace with secure listings, messaging, and moderation.",
       badges: ["Next.js", "Supabase"],
@@ -187,10 +182,7 @@ export default function Home() {
           </Link>
         </motion.div>
 
-        {/* Footer */}
-        <motion.footer variants={item} className="text-xs text-secondary pb-8">
-          © {new Date().getFullYear()} Rishikumar Senthilvel. Built with Next.js & Tailwind.
-        </motion.footer>
+        {/* Footer removed per request */}
       </motion.section>
     </main>
   );
