@@ -116,7 +116,7 @@ export default function Home() {
         <motion.ul variants={container} className="space-y-6 mb-10">
           {projects.map((p) => (
             <motion.li key={p.title} variants={item}>
-              <div className="flex items-center justify-start gap-2 mb-1">
+              <div className="flex items-center justify-start gap-2 mb-1 flex-wrap">
                 <h3 className="text-[18px] sm:text-lg font-medium text-primary">
                   {p.title}
                 </h3>
@@ -142,20 +142,23 @@ export default function Home() {
                     </span>
                   ))}
                   {p.badges && p.badges.length > 2 && (
-                    <span className="relative inline-flex items-center ml-2 group/badges">
-                      <span
-                        className="text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/badges:opacity-0 group-hover/badges:scale-90 group-hover/badges:max-w-0 group-hover/badges:px-0 group-hover/badges:mr-0 overflow-hidden"
-                      >
+                    <span className="relative inline-flex items-center ml-2 whitespace-nowrap group/badges">
+                      {/* +N chip keeps a minimum width to prevent layout shifts */}
+                      <span className="inline-flex justify-center min-w-[28px] text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary transition-all duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/badges:opacity-0 group-hover/badges:scale-95 group-hover/badges:w-0 group-hover/badges:min-w-0 group-hover/badges:px-0 overflow-hidden">
                         +{p.badges.length - 2}
                       </span>
-                      {p.badges.slice(2).map((b) => (
-                        <span
-                          key={b}
-                          className="ml-2 text-[11px] leading-5 rounded-full bg-[color:var(--color-accent)] text-secondary opacity-0 scale-95 -translate-x-1 max-w-0 px-0 mr-0 overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/badges:opacity-100 group-hover/badges:scale-100 group-hover/badges:translate-x-0 group-hover/badges:max-w-[160px] group-hover/badges:px-2"
-                        >
-                          {b}
-                        </span>
-                      ))}
+                      {/* Smoothly expanding container for the remaining badges; no left margin until hover */}
+                      <span className="inline-flex items-center gap-2 overflow-hidden max-w-0 ml-0 transition-[max-width,margin] duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/badges:max-w-[360px] group-hover/badges:ml-2">
+                        {p.badges.slice(2).map((b, i) => (
+                          <span
+                            key={b}
+                            style={{ transitionDelay: `${i * 40}ms` }}
+                            className="text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary opacity-0 translate-y-[2px] transition-all duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/badges:opacity-100 group-hover/badges:translate-y-0"
+                          >
+                            {b}
+                          </span>
+                        ))}
+                      </span>
                     </span>
                   )}
                 </span>
