@@ -2,18 +2,18 @@
 
 /* Brand theme */
 :root {
-  /* Base colors */
-  --background: #FDF6ED; /* warm cream */
-  --foreground: #2C3E50; /* primary text: dark blue-gray */
+  /* Subtle sage palette */
+  --background: #EEF2EC; /* slightly darker sage-ivory */
+  --foreground: #2F3A2E; /* deep olive-gray */
 }
 
 @theme inline {
   /* Expose tokens to Tailwind */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: #2C3E50;   /* text primary */
-  --color-secondary: #34495E; /* text secondary */
-  --color-accent: #F5E6D6;    /* badge/accent */
+  --color-primary: #2F3A2E;   /* text primary */
+  --color-secondary: #4B5A4B; /* text secondary */
+  --color-accent: #D6E3D3;    /* badge/accent - slightly darker */
 
   /* Font variables provided by next/font in layout */
   --font-sans: var(--font-inter);
