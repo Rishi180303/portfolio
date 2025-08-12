@@ -14,6 +14,7 @@
   --color-primary: #2F3A2E;   /* text primary */
   --color-secondary: #4B5A4B; /* text secondary */
   --color-accent: #D6E3D3;    /* badge/accent - slightly darker */
+  --color-accent-strong: #C7D5C3; /* badge hover accent */
 
   /* Font variables provided by next/font in layout */
   --font-sans: var(--font-inter);

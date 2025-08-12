@@ -65,7 +65,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="font-sans min-h-screen flex items-center justify-center px-6 py-10 sm:px-8 md:px-12 lg:px-20 xl:px-28 2xl:px-44 bg-background text-primary">
+    <main className="font-sans min-h-screen flex items-start md:items-center justify-center px-5 py-12 sm:px-8 md:px-12 lg:px-20 xl:px-28 2xl:px-44 bg-background text-primary">
       <motion.section
         initial="hidden"
         animate="show"
@@ -78,7 +78,7 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/profile_pic.jpg" alt="Rishikumar Senthilvel" className="w-12 h-12 sm:w-14 sm:h-14 object-cover" />
           </span>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-primary">
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight leading-tight text-primary">
             Hi, I’m Rishikumar Senthilvel
           </h1>
         </motion.header>
@@ -95,16 +95,16 @@ export default function Home() {
         <motion.h2 variants={item} className="text-[17px] font-semibold text-primary mb-3">
           Experience
         </motion.h2>
-        <motion.ul variants={container} className="space-y-5 mb-10">
+        <motion.ul variants={container} className="space-y-4 sm:space-y-5 mb-10">
           {experience.map((e) => (
             <motion.li key={e.title} variants={item}>
-              <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-[18px] sm:text-lg font-medium text-primary">{e.title}</h3>
-                <span className="text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary">
+              <div className="flex items-baseline gap-2 mb-1">
+                <h3 className="text-[17px] sm:text-lg font-medium text-primary">{e.title}</h3>
+                <span className="text-[10px] sm:text-[11px] leading-5 px-1.5 sm:px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary whitespace-nowrap self-start mt-1 sm:mt-0">
                   {e.period}
                 </span>
               </div>
-              <p className="text-secondary text-[15px] leading-relaxed">{e.desc}</p>
+              <p className="text-secondary text-[14px] sm:text-[15px] leading-relaxed">{e.desc}</p>
             </motion.li>
           ))}
         </motion.ul>
@@ -113,11 +113,11 @@ export default function Home() {
         <motion.h2 variants={item} className="text-[17px] font-semibold text-primary mb-3">
           Projects
         </motion.h2>
-        <motion.ul variants={container} className="space-y-6 mb-10">
+        <motion.ul variants={container} className="space-y-5 sm:space-y-6 mb-10">
           {projects.map((p) => (
             <motion.li key={p.title} variants={item}>
               <div className="flex items-center justify-start gap-2 mb-1 flex-wrap">
-                <h3 className="text-[18px] sm:text-lg font-medium text-primary">
+                <h3 className="text-[17px] sm:text-lg font-medium text-primary">
                   {p.title}
                 </h3>
                 {p.href && (
@@ -136,34 +136,36 @@ export default function Home() {
                   {p.badges?.slice(0, 2).map((b) => (
                     <span
                       key={b}
-                      className="ml-2 text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary"
+                      className="ml-2 text-[10px] sm:text-[11px] leading-5 px-1.5 sm:px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary"
                     >
                       {b}
                     </span>
                   ))}
                   {p.badges && p.badges.length > 2 && (
-                    <span className="relative inline-flex items-center ml-2 whitespace-nowrap group/badges">
-                      {/* +N chip keeps a minimum width to prevent layout shifts */}
-                      <span className="inline-flex justify-center min-w-[28px] text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary transition-all duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/badges:opacity-0 group-hover/badges:scale-95 group-hover/badges:w-0 group-hover/badges:min-w-0 group-hover/badges:px-0 overflow-hidden">
-                        +{p.badges.length - 2}
+                    <>
+                      {/* Desktop/tablet: +N with hover expand */}
+                      <span className="relative hidden sm:inline-flex items-center ml-2 whitespace-nowrap group/badges">
+                        <span className="inline-flex justify-center min-w-[28px] text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary transition-all duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[color:var(--color-accent-strong)] group-hover/badges:opacity-0 group-hover/badges:scale-95 group-hover/badges:w-0 group-hover/badges:min-w-0 group-hover/badges:px-0 overflow-hidden">
+                          +{p.badges.length - 2}
+                        </span>
+                        <span className="inline-flex items-center gap-2 overflow-hidden max-w-0 ml-0 transition-[max-width,margin] duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/badges:max-w-[360px] group-hover/badges:ml-2">
+                          {p.badges.slice(2).map((b, i) => (
+                            <span
+                              key={b}
+                              style={{ transitionDelay: `${i * 40}ms` }}
+                              className="text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] hover:bg-[color:var(--color-accent-strong)] text-secondary opacity-0 translate-y-[2px] transition-all duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/badges:opacity-100 group-hover/badges:translate-y-0"
+                            >
+                              {b}
+                            </span>
+                          ))}
+                        </span>
                       </span>
-                      {/* Smoothly expanding container for the remaining badges; no left margin until hover */}
-                      <span className="inline-flex items-center gap-2 overflow-hidden max-w-0 ml-0 transition-[max-width,margin] duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/badges:max-w-[360px] group-hover/badges:ml-2">
-                        {p.badges.slice(2).map((b, i) => (
-                          <span
-                            key={b}
-                            style={{ transitionDelay: `${i * 40}ms` }}
-                            className="text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary opacity-0 translate-y-[2px] transition-all duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/badges:opacity-100 group-hover/badges:translate-y-0"
-                          >
-                            {b}
-                          </span>
-                        ))}
-                      </span>
-                    </span>
+                      {/* Mobile: only show first two badges (no +N, no extras) */}
+                    </>
                   )}
                 </span>
               </div>
-              <p className="text-secondary text-[15px] leading-relaxed">
+              <p className="text-secondary text-[14px] sm:text-[15px] leading-relaxed">
                 {p.desc}
               </p>
             </motion.li>
@@ -171,7 +173,7 @@ export default function Home() {
         </motion.ul>
 
         {/* Links */}
-        <motion.div variants={item} className="flex flex-wrap items-center justify-start gap-5 mb-10 text-[15px]">
+        <motion.div variants={item} className="flex flex-wrap items-center justify-start gap-4 sm:gap-5 mb-10 text-[14px] sm:text-[15px]">
           <Link
             href="mailto:rsenthi4@asu.edu"
             className="inline-flex items-center gap-2 text-primary hover:opacity-80"
