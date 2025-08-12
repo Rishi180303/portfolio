@@ -1,103 +1,159 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import { motion, type Variants } from "framer-motion";
+import { Github, Linkedin, Mail, ExternalLink, FileText } from "lucide-react";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const easeOutBezier: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const container: Variants = {
+    hidden: { opacity: 0, y: 8 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.06, duration: 0.5, ease: easeOutBezier },
+    },
+  };
+
+  const item: Variants = {
+    hidden: { opacity: 0, y: 8 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: easeOutBezier } },
+  };
+
+  const projects: Array<{
+    title: string;
+    desc: string;
+    badges?: string[];
+    href?: string;
+  }> = [
+    {
+      title: "Traxidy (Capstone)",
+      desc: "Integrated Google Calendar & Meet so task deadlines auto-appear with invites.",
+      badges: ["2025"],
+    },
+    {
+      title: "Unihabitat",
+      desc: "Student-first housing marketplace with secure listings, messaging, and moderation.",
+      badges: ["Next.js", "Supabase"],
+      href: "https://unihabitat.app",
+    },
+    {
+      title: "RallyUp (iOS)",
+      desc: "Discover & host local sports sessions; live maps, host tools, and auto-created chats.",
+      badges: ["SwiftUI"],
+      href: "https://github.com/rsenthi4",
+    },
+    {
+      title: "Unblock AI",
+      desc: "A writing flow booster using AI prompts, realtime notes, and image support.",
+      badges: ["Next.js", "Clerk"],
+      href: "https://unblock-ai.example.com",
+    },
+  ];
+
+  return (
+    <main className="font-sans min-h-screen px-6 py-10 sm:px-8 md:px-12 lg:px-20 xl:px-28 2xl:px-44 bg-background text-primary">
+      <motion.section
+        initial="hidden"
+        animate="show"
+        variants={container}
+        className="max-w-3xl"
+      >
+        {/* Header with circle avatar and greeting */}
+        <motion.header variants={item} className="mb-6 flex items-center gap-4">
+          <span className="inline-block w-6 h-6 rounded-full bg-secondary/40" aria-hidden />
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-primary">
+            Hi, I’m Rishikumar Senthilvel
+          </h1>
+        </motion.header>
+
+        {/* Taglines */}
+        <motion.p variants={item} className="text-secondary text-[15px] sm:text-base leading-relaxed">
+          I build full-stack apps with clean UI and reliable backend plumbing.
+        </motion.p>
+        <motion.p variants={item} className="text-secondary text-[15px] sm:text-base leading-relaxed mb-8">
+          Currently shipping calendar + auth integrations for product teams.
+        </motion.p>
+
+        {/* Projects */}
+        <motion.ul variants={container} className="space-y-6 mb-10">
+          {projects.map((p) => (
+            <motion.li
+              key={p.title}
+              variants={item}
+              className="group"
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <h3 className="text-[18px] sm:text-lg font-medium text-primary">
+                  {p.title}
+                </h3>
+                {p.href && (
+                  <Link
+                    href={p.href}
+                    className="inline-flex items-center text-secondary hover:text-primary"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Open ${p.title}`}
+                  >
+                    <ExternalLink size={16} />
+                  </Link>
+                )}
+                {p.badges?.map((b) => (
+                  <span
+                    key={b}
+                    className="ml-2 text-[11px] leading-5 px-2 py-0.5 rounded-full bg-[color:var(--color-accent)] text-secondary"
+                  >
+                    {b}
+                  </span>
+                ))}
+              </div>
+              <p className="text-secondary text-[15px] leading-relaxed">
+                {p.desc}
+              </p>
+            </motion.li>
+          ))}
+        </motion.ul>
+
+        {/* Links */}
+        <motion.div variants={item} className="flex flex-wrap items-center gap-5 mb-10 text-[15px]">
+          <Link
+            href="mailto:rsenthi4@asu.edu"
+            className="inline-flex items-center gap-2 text-primary hover:opacity-80"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            <Mail size={18} /> Say hi
+          </Link>
+          <Link
+            href="https://github.com/rsenthi4"
             target="_blank"
-            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-primary hover:opacity-80"
+            rel="noreferrer"
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            <Github size={18} /> GitHub
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/rishikumar-s/"
+            target="_blank"
+            className="inline-flex items-center gap-2 text-primary hover:opacity-80"
+            rel="noreferrer"
+          >
+            <Linkedin size={18} /> LinkedIn
+          </Link>
+          <Link
+            href="/resume.pdf"
+            target="_blank"
+            className="inline-flex items-center gap-2 text-primary hover:opacity-80"
+            rel="noreferrer"
+          >
+            <FileText size={18} /> Résumé
+          </Link>
+        </motion.div>
+
+        {/* Footer */}
+        <motion.footer variants={item} className="text-xs text-secondary pb-8">
+          © {new Date().getFullYear()} Rishikumar Senthilvel. Built with Next.js & Tailwind.
+        </motion.footer>
+      </motion.section>
+    </main>
   );
 }
