@@ -74,7 +74,10 @@ export default function Home() {
       >
         {/* Header with circle avatar and greeting */}
         <motion.header variants={item} className="mb-6 flex items-center justify-start gap-4">
-          <span className="inline-block w-6 h-6 rounded-full bg-secondary/40" aria-hidden />
+          <span className="inline-block w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden bg-secondary/30" aria-hidden>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/profile_pic.jpg" alt="Rishikumar Senthilvel" className="w-12 h-12 sm:w-14 sm:h-14 object-cover" />
+          </span>
           <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-primary">
             Hi, I’m Rishikumar Senthilvel
           </h1>
@@ -85,7 +88,7 @@ export default function Home() {
           I’m a senior CS student at ASU who likes to build things.
         </motion.p>
         <motion.p variants={item} className="text-secondary text-[15px] sm:text-base leading-relaxed mb-8">
-          I enjoy shipping simple, clean products.
+          Actively seeking opportunities to contribute to innovative and groundbreaking projects.
         </motion.p>
 
         {/* Experience */}
