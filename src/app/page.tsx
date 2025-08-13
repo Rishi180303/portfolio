@@ -30,7 +30,7 @@ export default function Home() {
     desc: string;
   }> = [
     {
-      title: "Traxidy — ASU Capstone",
+      title: "student developer - Traxidy (ASU Capstone)",
       period: "Jan 2025 – Current",
       desc: "Integrated Google Calendar & Meet so task deadlines auto‑appear; OAuth linking and invites.",
     },
