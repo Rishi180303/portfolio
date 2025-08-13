@@ -21,6 +21,9 @@ export default function Home() {
     show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: easeOutBezier } },
   };
 
+  const email = "rsenthi4@asu.edu";
+  const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
+
   const experience: Array<{
     title: string;
     period: string;
@@ -174,12 +177,15 @@ export default function Home() {
 
         {/* Links */}
         <motion.div variants={item} className="flex flex-wrap items-center justify-start gap-4 sm:gap-5 mb-10 text-[14px] sm:text-[15px]">
-          <Link
-            href="mailto:rsenthi4@asu.edu"
+          <a
+            href={gmailURL}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 text-primary hover:opacity-80"
+            aria-label="Open Gmail compose to email Rishikumar Senthilvel"
           >
             <Mail size={18} /> Say hi
-          </Link>
+          </a>
           <Link
             href="https://github.com/Rishi180303"
             target="_blank"
